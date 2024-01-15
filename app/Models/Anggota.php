@@ -11,16 +11,15 @@ class Anggota extends Model
     protected $table = 'anggota';
     protected $fillable = ['nama', 'email', 'no_hp', 'alamat'];
 
-    // public static $rules = [
-    //     'nama' => 'required|string|max:255',
-    //     'email' => 'required|email',
-    //     'no_hp' => 'required|string|max:15',
-    //     'alamat' => 'required|string|max:255',
-    // ];
+    public static $rules = [
+        'nama' => 'required|string|max:255',
+        'email' => 'required|email',
+        'no_hp' => 'required|string|max:15',
+        'alamat' => 'required|string|max:255',
+    ];
 
-    // public static function validate($data)
-    // {   
-    //     return validator($data, self::$rules);
-    // }
-
+    public static function validate($data)
+    {
+        return validator($data, self::$rules);
+    }
 }

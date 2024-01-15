@@ -1,4 +1,4 @@
-<!-- resources/views/anggota/edit.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,11 +10,14 @@
 
 <body>
     <div class="container mx-auto p-4">
+        <!-- Judul Halaman -->
         <h1 class="text-2xl font-bold mb-4">Edit Anggota</h1>
 
+        <!-- Menampilkan Pesan Validasi Jika Ada Kesalahan -->
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
+                <!-- Menampilkan Setiap Kesalahan -->
                 @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
                 @endforeach
@@ -22,22 +25,28 @@
         </div>
         @endif
 
+        <!-- Formulir Edit Anggota -->
         <form action="{{ route('anggota.update', $anggota->id) }}" method="POST" class="max-w-md">
             @csrf
-            @method('PUT')
+            @method('PUT') <!-- Menentukan metode HTTP untuk update -->
 
+            <!-- Input untuk Nama -->
             <label for="nama" class="block text-sm font-medium text-gray-700">Nama:</label>
             <input type="text" name="nama" value="{{ $anggota->nama }}" required class="mt-1 p-2 w-full border rounded">
 
+            <!-- Input untuk Email -->
             <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
             <input type="email" name="email" value="{{ $anggota->email }}" required class="mt-1 p-2 w-full border rounded">
 
+            <!-- Input untuk Nomor HP -->
             <label for="no_hp" class="block text-sm font-medium text-gray-700">No. HP:</label>
             <input type="text" name="no_hp" value="{{ $anggota->no_hp }}" required class="mt-1 p-2 w-full border rounded">
 
+            <!-- Input untuk Alamat (Textarea) -->
             <label for="alamat" class="block text-sm font-medium text-gray-700">Alamat:</label>
             <textarea name="alamat" required class="mt-1 p-2 w-full border rounded">{{ $anggota->alamat }}</textarea>
 
+            <!-- Tombol Simpan -->
             <button type="submit" class="mt-4 bg-green-500 text-white px-4 py-2 rounded">Simpan</button>
         </form>
     </div>
