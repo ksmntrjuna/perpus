@@ -13,7 +13,7 @@ class AnggotaController extends Controller
         $anggota = Anggota::all();
         return view('anggota.index', compact('anggota'));
     }
-
+    
     // Menampilkan formulir untuk menambah anggota
     public function create()
     {
@@ -24,7 +24,12 @@ class AnggotaController extends Controller
     public function store(Request $request)
     {
         // Validasi data sebelum disimpan
-        $request->validate(Anggota::$rules);
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required',
+            'no_hp' => 'required|string|max:15',
+            'alamat' => 'required|string|max:255',
+        ]);
 
         // Membuat record anggota baru
         Anggota::create($request->all());
@@ -50,7 +55,12 @@ class AnggotaController extends Controller
     public function update(Request $request, $id)
     {
         // Validasi data sebelum diupdate
-        $request->validate(Anggota::$rules);
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required',
+            'no_hp' => 'required|string|max:15',
+            'alamat' => 'required|string|max:255',
+        ]);
 
         // Mengambil anggota yang akan diupdate
         $anggota = Anggota::findOrFail($id);
